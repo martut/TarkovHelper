@@ -22,6 +22,8 @@ jobs:
         dotnet-version: 7.0.x
     - name: Move to API catalog
       run: cd src/TarkovHelper.API
+    - name: Show Dir
+      run: pwd
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
