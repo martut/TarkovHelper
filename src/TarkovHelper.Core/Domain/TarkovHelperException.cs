@@ -2,8 +2,6 @@ namespace TarkovHelper.Core.Domain;
 
 public abstract class TarkovHelperException : Exception
 {
-    protected string Code { get; }
-
     protected TarkovHelperException()
     {
     }
@@ -13,12 +11,12 @@ public abstract class TarkovHelperException : Exception
         Code = code;
     }
 
-    protected TarkovHelperException(string message, params object[] args) 
+    protected TarkovHelperException(string message, params object[] args)
         : this(string.Empty, message, args)
     {
     }
 
-    protected TarkovHelperException(string code, string message, params object[] args) 
+    protected TarkovHelperException(string code, string message, params object[] args)
         : this(null, code, message, args)
     {
     }
@@ -28,9 +26,11 @@ public abstract class TarkovHelperException : Exception
     {
     }
 
-    protected TarkovHelperException(Exception? innerException, string code, string message, params object[] args) 
+    protected TarkovHelperException(Exception? innerException, string code, string message, params object[] args)
         : base(string.Format(message, args), innerException)
     {
         Code = code;
     }
+
+    public string Code { get; }
 }

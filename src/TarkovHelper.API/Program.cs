@@ -1,3 +1,4 @@
+using TarkovHelper.API.Framework;
 using TarkovHelper.Infrastructure.Extensions;
 using TarkovHelper.Infrastructure.Settings;
 
@@ -18,11 +19,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    
+
     var generalSettings = app.Services.GetService<GeneralSettings>();
     Console.WriteLine($"App Name: {generalSettings?.Name}");
 }
 
+app.UseCustomExceptionHandler();
 
 app.UseHttpsRedirection();
 
