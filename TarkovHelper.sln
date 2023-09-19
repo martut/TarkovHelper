@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarkovHelper.Tests", "tests\TarkovHelper.Tests\TarkovHelper.Tests.csproj", "{388F57A1-95A0-4139-9132-4C3BEAA40BEB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarkovHelper.EndToEnd", "tests\TarkovHelper.EndToEnd\TarkovHelper.EndToEnd.csproj", "{AF15BC82-941A-448F-BA70-40DAA4D0C854}"
@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{0DAD
 	ProjectSection(SolutionItems) = preProject
 		scripts\Dockerfile = scripts\Dockerfile
 		scripts\.dockerignore = scripts\.dockerignore
+		scripts\start.sh = scripts\start.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5E44AA08-BDFB-4EDC-8376-03E50643E8F2}"
