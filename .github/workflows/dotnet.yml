@@ -31,9 +31,9 @@ jobs:
       run: dotnet build --no-restore
       working-directory: src/TarkovHelper.API
     - name: Unit Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test
       working-directory: tests/TarkovHelper.Tests
     - name: End To End Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test
       working-directory: tests/TarkovHelper.EndToEnd
 
