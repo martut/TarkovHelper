@@ -20,13 +20,20 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
-    - name: Move to API catalog
+    - name: Change Directory to src/TarkovHelper.API
       run: cd src/TarkovHelper.API
     - name: Show Dir
       run: pwd
     - name: Restore dependencies
       run: dotnet restore
+      working-directory: src/TarkovHelper.API
     - name: Build
       run: dotnet build --no-restore
-    - name: Test
+      working-directory: src/TarkovHelper.API
+    - name: Unit Test
       run: dotnet test --no-build --verbosity normal
+      working-directory: tests/TarkovHelper.Tests
+    - name: End To End Test
+      run: dotnet test --no-build --verbosity normal
+      working-directory: tests/TarkovHelper.EndToEnd
+
