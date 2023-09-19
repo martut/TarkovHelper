@@ -6,15 +6,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarkovHelper.Core", "src\Ta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarkovHelper.Infrastructure", "src\TarkovHelper.Infrastructure\TarkovHelper.Infrastructure.csproj", "{86489539-3BAE-48FA-BB0D-CA7CF95C5A94}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D2F36424-6744-4D76-9CA2-A5289FD55417}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8F7FAE08-82AA-4876-AEF2-85DAB67994B3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarkovHelper.Tests", "tests\TarkovHelper.Tests\TarkovHelper.Tests.csproj", "{388F57A1-95A0-4139-9132-4C3BEAA40BEB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarkovHelper.EndToEnd", "tests\TarkovHelper.EndToEnd\TarkovHelper.EndToEnd.csproj", "{AF15BC82-941A-448F-BA70-40DAA4D0C854}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{8EDFAF53-6D2E-46C5-AFBE-998756982A76}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{93504FF7-E62D-4160-A913-8A18600D5A22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{0DAD391C-70B1-4BB8-B8F4-07A1A46E0121}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\Dockerfile = scripts\Dockerfile
+		src\.dockerignore = src\.dockerignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,10 +46,10 @@ Global
 		{AF15BC82-941A-448F-BA70-40DAA4D0C854}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{388F57A1-95A0-4139-9132-4C3BEAA40BEB} = {8F7FAE08-82AA-4876-AEF2-85DAB67994B3}
-		{AF15BC82-941A-448F-BA70-40DAA4D0C854} = {8F7FAE08-82AA-4876-AEF2-85DAB67994B3}
 		{CA3CDFF1-4673-4EF9-B1C5-1E10F75FA96C} = {D2F36424-6744-4D76-9CA2-A5289FD55417}
 		{BAF58194-7DB0-4CDA-95F5-3DC14CCF6219} = {D2F36424-6744-4D76-9CA2-A5289FD55417}
 		{86489539-3BAE-48FA-BB0D-CA7CF95C5A94} = {D2F36424-6744-4D76-9CA2-A5289FD55417}
+		{388F57A1-95A0-4139-9132-4C3BEAA40BEB} = {93504FF7-E62D-4160-A913-8A18600D5A22}
+		{AF15BC82-941A-448F-BA70-40DAA4D0C854} = {93504FF7-E62D-4160-A913-8A18600D5A22}
 	EndGlobalSection
 EndGlobal
