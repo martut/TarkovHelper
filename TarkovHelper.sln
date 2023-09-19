@@ -15,9 +15,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarkovHelper.EndToEnd", "tests\TarkovHelper.EndToEnd\TarkovHelper.EndToEnd.csproj", "{AF15BC82-941A-448F-BA70-40DAA4D0C854}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{8EDFAF53-6D2E-46C5-AFBE-998756982A76}"
-	ProjectSection(SolutionItems) = preProject
-		scripts\NewFile1.txt = scripts\NewFile1.txt
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
