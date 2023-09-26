@@ -1,4 +1,5 @@
 using TarkovHelper.API.Framework;
+using TarkovHelper.Infrastructure.Exceptions;
 using TarkovHelper.Infrastructure.Extensions;
 using TarkovHelper.Infrastructure.Settings;
 

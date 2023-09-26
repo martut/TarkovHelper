@@ -9,16 +9,34 @@ public class Item
     
     public string Name { get; protected set; }
 
+    public string ShortName { get; protected set; }
+
     public ItemType Type { get; protected set; }
 
     public Item()
     {
     }
 
-    public Item(string name, ItemType type)
+    public Item(string name, string shortName, ItemType type)
     {
         SetName(name);
         SetType(type);
+        SetShortName(shortName);
+    }
+
+    private void SetShortName(string shortName)
+    {
+        if (string.IsNullOrEmpty(shortName))
+        {
+            throw new DomainException(ErrorCodes.InvalidItemName, "Short name cannot be empty.");
+        }
+
+        if (shortName == ShortName)
+        {
+            return;
+        }
+
+        ShortName = shortName;
     }
 
     private void SetType(ItemType type)
