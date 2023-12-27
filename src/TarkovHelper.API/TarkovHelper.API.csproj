@@ -8,16 +8,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="MediatR" Version="12.1.1" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Controllers\"/>
+        <ProjectReference Include="..\TarkovHelper.Infrastructure\TarkovHelper.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\TarkovHelper.Infrastructure\TarkovHelper.Infrastructure.csproj"/>
+      <Folder Include="Framework\" />
     </ItemGroup>
 
 </Project>

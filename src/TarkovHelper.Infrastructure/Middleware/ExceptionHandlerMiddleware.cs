@@ -1,6 +1,7 @@
 using System.Net;
+using Microsoft.AspNetCore.Http;
 
-namespace TarkovHelper.API.Framework;
+namespace TarkovHelper.Infrastructure.Middleware;
 
 public class ExceptionHandlerMiddleware
 {

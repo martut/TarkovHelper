@@ -22,8 +22,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarkovHelper.Core", "src\Ta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarkovHelper.Infrastructure", "src\TarkovHelper.Infrastructure\TarkovHelper.Infrastructure.csproj", "{E8CF43B1-7493-4179-BCA1-08185D2E77C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarkovHelper.Application", "src\TarkovHelper.Application\TarkovHelper.Application.csproj", "{AF37F9C2-87DC-4927-97B1-AF162E862332}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,10 +60,6 @@ Global
 		{E8CF43B1-7493-4179-BCA1-08185D2E77C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8CF43B1-7493-4179-BCA1-08185D2E77C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8CF43B1-7493-4179-BCA1-08185D2E77C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF37F9C2-87DC-4927-97B1-AF162E862332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF37F9C2-87DC-4927-97B1-AF162E862332}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF37F9C2-87DC-4927-97B1-AF162E862332}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF37F9C2-87DC-4927-97B1-AF162E862332}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CA3CDFF1-4673-4EF9-B1C5-1E10F75FA96C} = {D2F36424-6744-4D76-9CA2-A5289FD55417}
@@ -76,6 +70,5 @@ Global
 		{C8CA5890-C8BC-4134-A4B2-95C4EBEE3EC9} = {5E44AA08-BDFB-4EDC-8376-03E50643E8F2}
 		{3FF60661-9FD0-403F-B8B9-8348BE91E8D6} = {5E44AA08-BDFB-4EDC-8376-03E50643E8F2}
 		{E8CF43B1-7493-4179-BCA1-08185D2E77C0} = {5E44AA08-BDFB-4EDC-8376-03E50643E8F2}
-		{AF37F9C2-87DC-4927-97B1-AF162E862332} = {5E44AA08-BDFB-4EDC-8376-03E50643E8F2}
 	EndGlobalSection
 EndGlobal

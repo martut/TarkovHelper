@@ -12,11 +12,18 @@ public class ItemDetails
 
     public bool IsFoundInRaid { get; protected set; }
 
-    public ItemDetails()
+    protected ItemDetails()
     {
     }
 
     public ItemDetails(Item item, int count, bool isFoundInRaid)
+    {
+        SetCount(count);
+        IsFoundInRaid = isFoundInRaid;
+        Item = item;
+    }
+
+    public void SetCount(int count)
     {
         if (count < 1)
         {
@@ -24,7 +31,5 @@ public class ItemDetails
         }
 
         Count = count;
-        IsFoundInRaid = isFoundInRaid;
-        Item = item;
     }
 }

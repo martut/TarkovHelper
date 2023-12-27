@@ -1,4 +1,6 @@
-namespace TarkovHelper.API.Framework;
+using Microsoft.AspNetCore.Builder;
+
+namespace TarkovHelper.Infrastructure.Middleware;
 
 public static class Extensions
 {
