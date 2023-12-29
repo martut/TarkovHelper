@@ -1,3 +1,4 @@
+
 using TarkovHelper.Core.Domain;
 
 namespace TarkovHelper.Infrastructure.Exceptions;

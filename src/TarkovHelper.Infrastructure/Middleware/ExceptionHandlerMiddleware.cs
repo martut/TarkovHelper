@@ -1,27 +1,16 @@
 using System.Net;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace TarkovHelper.Infrastructure.Middleware;
 
-public class ExceptionHandlerMiddleware
+public class ExceptionHandlerMiddleware : IMiddleware
 {
-    private readonly RequestDelegate _next;
+    private readonly ILogger<ExceptionHandlerMiddleware> _logger;
 
-    public ExceptionHandlerMiddleware(RequestDelegate next)
+    public ExceptionHandlerMiddleware(ILogger<ExceptionHandlerMiddleware> logger)
     {
-        _next = next;
-    }
-
-    public async Task Invoke(HttpContext context)
-    {
-        try
-        {
-            await _next(context);
-        }
-        catch (Exception ex)
-        {
-            await HandleExceptionAsync(context, ex);
-        }
+        _logger = logger;
     }
 
     private static Task HandleExceptionAsync(HttpContext context, Exception exception)
@@ -41,5 +30,18 @@ public class ExceptionHandlerMiddleware
         context.Response.StatusCode = (int)statusCode;
 
         return context.Response.WriteAsJsonAsync(response);
+    }
+
+    public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+    {
+        try
+        {
+            await next(context);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ex.Message);
+            await HandleExceptionAsync(context, ex);
+        }
     }
 }

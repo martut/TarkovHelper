@@ -1,5 +1,6 @@
 using System.Reflection;
 using Serilog;
+using TarkovHelper.Infrastructure.Middleware;
 using TarkovHelper.Infrastructure.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,10 @@ var generalSettings = builder.Configuration.GetSection("general");
 builder.Services.Configure<GeneralSettings>(generalSettings);
 
 
+//Add services
+builder.Services
+    .AddCustomExceptionHandler();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -37,13 +42,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCustomExceptionHandler();
-
 app.UseHttpsRedirection();
 
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseCustomExceptionHandler();
 
 app.MapControllers();
 

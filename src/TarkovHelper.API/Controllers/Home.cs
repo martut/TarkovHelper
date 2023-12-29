@@ -11,6 +11,6 @@ public class Home : BaseApiController
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        return Ok(await Mediator.Send());
+        return Ok();
     }
 }
