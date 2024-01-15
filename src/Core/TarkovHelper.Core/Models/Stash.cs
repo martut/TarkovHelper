@@ -2,16 +2,16 @@ namespace TarkovHelper.Core.Models;
 
 public class Stash
 {
-    private ISet<ItemDetails> _neededItems = new HashSet<ItemDetails>();
+    private ISet<RequiredItem> _neededItems = new HashSet<RequiredItem>();
 
     public int Id { get; set; }
 
     public int UserId { get; set; }
 
-    public IEnumerable<ItemDetails> NeededItems
+    public IEnumerable<RequiredItem> NeededItems
     {
         get => _neededItems;
-        set => _neededItems = new HashSet<ItemDetails>(value);
+        set => _neededItems = new HashSet<RequiredItem>(value);
     }
 
     public Stash()

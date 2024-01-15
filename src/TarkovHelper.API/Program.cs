@@ -1,5 +1,7 @@
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
+using TarkovHelper.Infrastructure.DAL;
 using TarkovHelper.Infrastructure.Middleware;
 using TarkovHelper.Infrastructure.Settings;
 
@@ -23,6 +25,12 @@ builder.Services.AddControllers();
 var generalSettings = builder.Configuration.GetSection("general");
 builder.Services.Configure<GeneralSettings>(generalSettings);
 
+//DB
+builder.Services.AddDbContext<ApplicationDbContext>(
+    options => options.UseSqlite(
+        builder.Configuration.GetConnectionString("ApplicationDBConnectionString")
+        )
+    );
 
 //Add services
 builder.Services

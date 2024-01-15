@@ -1,6 +1,6 @@
 namespace TarkovHelper.Core.Models;
 
-public class RequiredItem : ItemDetails
+public class RequiredItem : BaseItem
 {
     public RequiredItem()
     {

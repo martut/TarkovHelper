@@ -2,7 +2,7 @@ using TarkovHelper.Core.Domain;
 
 namespace TarkovHelper.Core.Models;
 
-public class ItemDetails
+public class BaseItem
 {
     public int Id { get; protected set; }
 
@@ -12,11 +12,11 @@ public class ItemDetails
 
     public bool IsFoundInRaid { get; protected set; }
 
-    protected ItemDetails()
+    protected BaseItem()
     {
     }
 
-    public ItemDetails(Item item, int count, bool isFoundInRaid)
+    public BaseItem(Item item, int count, bool isFoundInRaid)
     {
         SetCount(count);
         IsFoundInRaid = isFoundInRaid;
