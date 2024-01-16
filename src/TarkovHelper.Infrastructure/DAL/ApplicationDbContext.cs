@@ -7,9 +7,8 @@ public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
-        
     }
-    
+
     public DbSet<Item> Items { get; set; }
 
     public DbSet<User> Users { get; set; }
@@ -25,4 +24,9 @@ public class ApplicationDbContext : DbContext
     public DbSet<UserQuest> UserQuests { get; set; }
 
     public DbSet<UserStash> UserStashes { get; set; }
+
+    public async Task<int> SaveChanges()
+    {
+        return await base.SaveChangesAsync();
+    }
 }
