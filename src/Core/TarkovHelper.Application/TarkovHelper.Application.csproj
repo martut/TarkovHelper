@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Requests\Commands\Item\"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\TarkovHelper.Core\TarkovHelper.Core.csproj"/>
     </ItemGroup>
 

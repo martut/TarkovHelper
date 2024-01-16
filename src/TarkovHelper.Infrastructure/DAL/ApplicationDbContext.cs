@@ -24,9 +24,4 @@ public class ApplicationDbContext : DbContext
     public DbSet<UserQuest> UserQuests { get; set; }
 
     public DbSet<UserStash> UserStashes { get; set; }
-
-    public async Task<int> SaveChanges()
-    {
-        return await base.SaveChangesAsync();
-    }
 }

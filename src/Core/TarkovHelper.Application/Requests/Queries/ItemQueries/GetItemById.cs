@@ -3,6 +3,7 @@ using TarkovHelper.Application.DTO;
 
 namespace TarkovHelper.Application.Requests.Queries.ItemQueries;
 
-public class GetAllItemsQuery : IRequest<IEnumerable<ItemDto>>
+public class GetItemById : IRequest<ItemDto?>
 {
+    public int Id { get; set; }
 }
