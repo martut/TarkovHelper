@@ -8,5 +8,11 @@ public interface IItemRepository : ITransientService
     Task<IEnumerable<Item>> GetAll();
     Task<Item?> GetById(int id);
 
-    Task<int> Create(Item item);
+    Task Create(Item item);
+
+    Task<bool> Save();
+
+    Task<int> SaveAndGetId();
+
+    Task Delete(Item item);
 }

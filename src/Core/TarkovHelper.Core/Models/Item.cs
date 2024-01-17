@@ -5,26 +5,26 @@ namespace TarkovHelper.Core.Models;
 
 public class Item
 {
-    public int Id { get; protected set; }
-    
-    public string Name { get; protected set; }
-
-    public string ShortName { get; protected set; }
-
-    public ItemType Type { get; protected set; }
-
     public Item()
     {
     }
 
-    public Item(string name, string shortName, ItemType type)
+    public Item(string name, string shortName, ItemType itemType)
     {
         SetName(name);
-        SetType(type);
+        SetItemType(itemType);
         SetShortName(shortName);
     }
 
-    private void SetShortName(string shortName)
+    public int Id { get; protected set; }
+
+    public string Name { get; protected set; }
+
+    public string ShortName { get; protected set; }
+
+    public ItemType ItemType { get; protected set; }
+
+    public void SetShortName(string shortName)
     {
         if (string.IsNullOrEmpty(shortName))
         {
@@ -39,17 +39,17 @@ public class Item
         ShortName = shortName;
     }
 
-    private void SetType(ItemType type)
+    public void SetItemType(ItemType itemType)
     {
-        if (type == Type)
+        if (itemType == ItemType)
         {
             return;
         }
 
-        Type = type;
+        ItemType = itemType;
     }
 
-    private void SetName(string name)
+    public void SetName(string name)
     {
         if (string.IsNullOrEmpty(name))
         {

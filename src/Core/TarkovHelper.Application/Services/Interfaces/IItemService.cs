@@ -10,4 +10,8 @@ public interface IItemService : ITransientService
     Task<IEnumerable<ItemDto>> GetAll();
 
     Task<int> Create(ItemCreateDto item);
+
+    Task<bool> Update(ItemDto itemDto);
+
+    Task<bool> Delete(int id);
 }

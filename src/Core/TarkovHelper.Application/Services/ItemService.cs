@@ -27,6 +27,36 @@ public class ItemService(IItemRepository itemRepository, IMapper mapper) : IItem
     {
         var item = new Item(itemDto.Name, itemDto.ShortName, Enum.Parse<ItemType>(itemDto.Type));
 
-        return await itemRepository.Create(item);
+        await itemRepository.Create(item);
+
+        return await itemRepository.SaveAndGetId();
+    }
+
+    public async Task<bool> Update(ItemDto itemDto)
+    {
+        var item = await itemRepository.GetById(itemDto.Id);
+        if (item == null)
+        {
+            throw new NullReferenceException("Id Not Found.");
+        }
+
+        item.SetName(itemDto.Name);
+        item.SetShortName(itemDto.ShortName);
+        item.SetItemType(Enum.Parse<ItemType>(itemDto.ItemType));
+
+        return await itemRepository.Save();
+    }
+
+    public async Task<bool> Delete(int id)
+    {
+        var item = await itemRepository.GetById(id);
+        if (item == null)
+        {
+            throw new NullReferenceException("Id Not Found.");
+        }
+
+        await itemRepository.Delete(item);
+
+        return await itemRepository.Save();
     }
 }

@@ -33,4 +33,35 @@ public class ItemController : BaseApiController
 
         return CreatedAtRoute("GetById", new { id }, null);
     }
+
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> Update(int id, ItemDto item)
+    {
+        if (id != item.Id)
+        {
+            return BadRequest();
+        }
+
+        var updated = await Mediator.Send(new UpdateItem(item));
+
+        if (!updated)
+        {
+            return BadRequest();
+        }
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var deleted = await Mediator.Send(new DeleteItem { Id = id });
+
+        if (!deleted)
+        {
+            return BadRequest();
+        }
+
+        return NoContent();
+    }
 }

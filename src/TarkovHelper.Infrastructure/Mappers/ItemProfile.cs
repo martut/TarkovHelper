@@ -9,6 +9,6 @@ public class ItemProfile : Profile
     public ItemProfile()
     {
         CreateMap<Item, ItemDto>()
-            .ForMember(i => i.Type, opt => opt.MapFrom(i => i.Type.ToString()));
+            .ForMember(i => i.ItemType, opt => opt.MapFrom(i => i.ItemType.ToString()));
     }
 }
