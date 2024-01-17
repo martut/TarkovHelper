@@ -1,17 +1,9 @@
-using TarkovHelper.Core.Domain;
+using TarkovHelper.Core.Exceptions;
 
 namespace TarkovHelper.Core.Models;
 
 public class BaseItem
 {
-    public int Id { get; protected set; }
-
-    public Item Item { get; protected set; }
-
-    public int Count { get; protected set; }
-
-    public bool IsFoundInRaid { get; protected set; }
-
     protected BaseItem()
     {
     }
@@ -22,6 +14,14 @@ public class BaseItem
         IsFoundInRaid = isFoundInRaid;
         Item = item;
     }
+
+    public int Id { get; protected set; }
+
+    public Item Item { get; protected set; }
+
+    public int Count { get; protected set; }
+
+    public bool IsFoundInRaid { get; protected set; }
 
     public void SetCount(int count)
     {

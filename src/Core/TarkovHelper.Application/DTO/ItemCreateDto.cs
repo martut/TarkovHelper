@@ -6,5 +6,5 @@ public class ItemCreateDto
 
     public string ShortName { get; set; }
 
-    public string Type { get; set; }
+    public string ItemType { get; set; }
 }

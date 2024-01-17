@@ -1,6 +1,6 @@
 using System.Net.Mail;
 using System.Text.RegularExpressions;
-using TarkovHelper.Core.Domain;
+using TarkovHelper.Core.Exceptions;
 
 namespace TarkovHelper.Core.Models;
 

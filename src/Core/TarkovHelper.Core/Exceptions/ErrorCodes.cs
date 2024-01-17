@@ -1,4 +1,4 @@
-namespace TarkovHelper.Core.Domain;
+namespace TarkovHelper.Core.Exceptions;
 
 public static class ErrorCodes
 {

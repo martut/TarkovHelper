@@ -1,4 +1,4 @@
-using TarkovHelper.Core.Domain;
+using TarkovHelper.Core.Exceptions;
 using TarkovHelper.Core.Models.Enums;
 
 namespace TarkovHelper.Core.Models;
@@ -53,7 +53,8 @@ public class Item
     {
         if (string.IsNullOrEmpty(name))
         {
-            throw new DomainException(ErrorCodes.InvalidItemName, "Name cannot be empty.");
+            throw new DomainException(ErrorCodes.InvalidItemName,
+                "Name cannot be empty.");
         }
 
         if (name == Name)

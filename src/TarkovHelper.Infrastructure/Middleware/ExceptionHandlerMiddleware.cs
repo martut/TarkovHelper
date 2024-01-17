@@ -1,6 +1,8 @@
 using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using TarkovHelper.Application.Exceptions;
+using TarkovHelper.Core.Exceptions;
 
 namespace TarkovHelper.Infrastructure.Middleware;
 
@@ -13,6 +15,19 @@ public class ExceptionHandlerMiddleware : IMiddleware
         _logger = logger;
     }
 
+    public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+    {
+        try
+        {
+            await next(context);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Tarkov Error:" + ex.Message);
+            await HandleExceptionAsync(context, ex);
+        }
+    }
+
     private static Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
         var errorCode = "error";
@@ -23,6 +38,12 @@ public class ExceptionHandlerMiddleware : IMiddleware
             case Exception e when exceptionType == typeof(UnauthorizedAccessException):
                 statusCode = HttpStatusCode.Unauthorized;
                 break;
+            case DomainException e when exceptionType == typeof(DomainException):
+                errorCode = e.Code;
+                break;
+            case ServiceException e when exceptionType == typeof(ServiceException):
+                errorCode = e.Code;
+                break;
         }
 
         var response = new { code = errorCode, message = exception.Message };
@@ -30,18 +51,5 @@ public class ExceptionHandlerMiddleware : IMiddleware
         context.Response.StatusCode = (int)statusCode;
 
         return context.Response.WriteAsJsonAsync(response);
-    }
-
-    public async Task InvokeAsync(HttpContext context, RequestDelegate next)
-    {
-        try
-        {
-            await next(context);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, ex.Message);
-            await HandleExceptionAsync(context, ex);
-        }
     }
 }
