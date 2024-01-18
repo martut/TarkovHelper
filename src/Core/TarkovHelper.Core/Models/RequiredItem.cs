@@ -6,8 +6,10 @@ public class RequiredItem : BaseItem
     {
     }
 
-    public RequiredItem(Item item, int count, bool isFoundInRaid) : base(item, count, isFoundInRaid)
+    public RequiredItem(int count, bool isFoundInRaid) : base(count, isFoundInRaid)
     {
     }
-    
+
+    public static RequiredItem Create(bool isFoundInRaid, int count)
+        => new RequiredItem(count, isFoundInRaid);
 }

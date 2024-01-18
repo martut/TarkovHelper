@@ -8,11 +8,10 @@ public class BaseItem
     {
     }
 
-    public BaseItem(Item item, int count, bool isFoundInRaid)
+    public BaseItem(int count, bool isFoundInRaid)
     {
         SetCount(count);
         IsFoundInRaid = isFoundInRaid;
-        Item = item;
     }
 
     public int Id { get; protected set; }
@@ -31,5 +30,10 @@ public class BaseItem
         }
 
         Count = count;
+    }
+
+    public void SetItem(Item item)
+    {
+        Item = item;
     }
 }

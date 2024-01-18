@@ -12,7 +12,5 @@ public interface IItemRepository : ITransientService
 
     Task<bool> Save();
 
-    Task<int> SaveAndGetId();
-
     Task Delete(Item item);
 }

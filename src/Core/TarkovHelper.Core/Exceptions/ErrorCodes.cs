@@ -10,4 +10,7 @@ public static class ErrorCodes
     public static string InvalidItemCount => "invalid_item_count";
 
     public static string InvalidQuest => "invalid_quest";
+    public static string InvalidQuestName => "invalid_quest_name";
+
+    public static string RequiredItemExists => "invalid_required_item";
 }

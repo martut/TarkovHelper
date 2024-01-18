@@ -13,7 +13,7 @@ public class ItemController : BaseApiController
         return Ok(await Mediator.Send(new GetAllItems()));
     }
 
-    [HttpGet("{id:int}", Name = "GetById")]
+    [HttpGet("{id:int}", Name = "GetItemById")]
     public async Task<IActionResult> GetById(int id)
     {
         var item = await Mediator.Send(new GetItemById { Id = id });
@@ -31,7 +31,7 @@ public class ItemController : BaseApiController
     {
         var id = await Mediator.Send(new CreateItem(item));
 
-        return CreatedAtRoute("GetById", new { id }, null);
+        return CreatedAtRoute("GetItemById", new { id }, null);
     }
 
     [HttpPut("{id:int}")]

@@ -4,11 +4,13 @@ using TarkovHelper.Core.Models;
 
 namespace TarkovHelper.Infrastructure.Mappers;
 
-public class ItemProfile : Profile
+public class TarkovHelperProfile : Profile
 {
-    public ItemProfile()
+    public TarkovHelperProfile()
     {
         CreateMap<Item, ItemDto>()
             .ForMember(i => i.ItemType, opt => opt.MapFrom(i => i.ItemType.ToString()));
+        CreateMap<Quest, QuestDto>();
+        CreateMap<RequiredItem, RequiredItemDto>();
     }
 }

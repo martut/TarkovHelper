@@ -4,6 +4,7 @@ using TarkovHelper.Application.Exceptions;
 using TarkovHelper.Application.Extension;
 using TarkovHelper.Application.Services.Interfaces;
 using TarkovHelper.Core.Models;
+using TarkovHelper.Core.Models.Enums;
 using TarkovHelper.Core.Repositories;
 
 namespace TarkovHelper.Application.Services;
@@ -26,11 +27,12 @@ public class ItemService(IItemRepository itemRepository, IMapper mapper) : IItem
 
     public async Task<int> Create(ItemCreateDto itemDto)
     {
-        var item = new Item(itemDto.Name, itemDto.ShortName, ItemTypeExtension.Parse(itemDto.ItemType));
+        var itemType = EnumExtension.Parse<ItemType>(itemDto.ItemType, ErrorCodes.ItemTypeNotFound);
+        var item = new Item(itemDto.Name, itemDto.ShortName, itemType);
 
         await itemRepository.Create(item);
-
-        return await itemRepository.SaveAndGetId();
+        await itemRepository.Save();
+        return item.Id;
     }
 
     public async Task<bool> Update(ItemDto itemDto)
@@ -42,9 +44,11 @@ public class ItemService(IItemRepository itemRepository, IMapper mapper) : IItem
                 $"Item with id: '{itemDto.Id}' was not found.");
         }
 
+        var itemType = EnumExtension.Parse<ItemType>(itemDto.ItemType, ErrorCodes.ItemTypeNotFound);
+
         item.SetName(itemDto.Name);
         item.SetShortName(itemDto.ShortName);
-        item.SetItemType(ItemTypeExtension.Parse(itemDto.ItemType));
+        item.SetItemType(itemType);
 
         return await itemRepository.Save();
     }
