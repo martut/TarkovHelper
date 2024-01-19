@@ -12,5 +12,7 @@ public class TarkovHelperProfile : Profile
             .ForMember(i => i.ItemType, opt => opt.MapFrom(i => i.ItemType.ToString()));
         CreateMap<Quest, QuestDto>();
         CreateMap<RequiredItem, RequiredItemDto>();
+        CreateMap<RequiredItemDto, RequiredItemCreateDto>()
+            .ForMember(r => r.ItemId, opt => opt.MapFrom(i => i.Item.Id));
     }
 }

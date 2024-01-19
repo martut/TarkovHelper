@@ -84,7 +84,7 @@ public class Quest
 
     public void AddRequiredItem(RequiredItem requiredItem)
     {
-        var item = GetRequiredItem(requiredItem.Id);
+        var item = GetRequiredItemByItemId(requiredItem.Item.Id);
         if (item != null)
         {
             throw new DomainException(ErrorCodes.RequiredItemExists,
@@ -94,6 +94,6 @@ public class Quest
         _requiredItems.Add(requiredItem);
     }
 
-    private RequiredItem? GetRequiredItem(int requiredItemId)
-        => _requiredItems.SingleOrDefault(r => r.Id == requiredItemId);
+    private RequiredItem? GetRequiredItemByItemId(int itemId)
+        => _requiredItems.SingleOrDefault(r => r.Item.Id == itemId);
 }

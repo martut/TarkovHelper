@@ -77,7 +77,7 @@ public class QuestService(
         quest.SetTrader(trader);
 
         var requiredItemsToDelete =
-            quest.RequiredItems.Where(r => questDto.RequiredItems.Select(i => i.Id).Contains(r.Id));
+            quest.RequiredItems.Where(r => !questDto.RequiredItems.Select(i => i.Id).Contains(r.Id));
         foreach (var requiredItem in requiredItemsToDelete)
         {
             await requiredItemService.Delete(requiredItem);
@@ -88,6 +88,7 @@ public class QuestService(
             if (requiredItemDto.Id == null)
             {
                 quest.AddRequiredItem(await requiredItemService.Create(requiredItemDto));
+                continue;
             }
 
             var reqItem = quest.RequiredItems.SingleOrDefault(r => r.Id == requiredItemDto.Id);
