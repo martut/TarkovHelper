@@ -11,7 +11,7 @@ public class BaseItem
     public BaseItem(int count, bool isFoundInRaid)
     {
         SetCount(count);
-        IsFoundInRaid = isFoundInRaid;
+        SetIsFoundInRaid(isFoundInRaid);
     }
 
     public int Id { get; protected set; }
@@ -30,6 +30,11 @@ public class BaseItem
         }
 
         Count = count;
+    }
+
+    public void SetIsFoundInRaid(bool isFound)
+    {
+        IsFoundInRaid = isFound;
     }
 
     public void SetItem(Item item)

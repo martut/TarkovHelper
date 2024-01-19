@@ -2,7 +2,7 @@ namespace TarkovHelper.Application.DTO;
 
 public class RequiredItemDto
 {
-    public int Id { get; set; }
+    public int? Id { get; set; }
 
     public ItemDto Item { get; set; }
 

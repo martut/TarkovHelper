@@ -9,7 +9,10 @@ using TarkovHelper.Core.Repositories;
 
 namespace TarkovHelper.Application.Services;
 
-public class QuestService(IQuestRepository questRepository, IItemRepository itemRepository, IMapper mapper)
+public class QuestService(
+    IQuestRepository questRepository,
+    IRequiredItemService requiredItemService,
+    IMapper mapper)
     : IQuestService
 {
     public async Task<IEnumerable<QuestDto>> GetAll()
@@ -32,7 +35,7 @@ public class QuestService(IQuestRepository questRepository, IItemRepository item
         var quest = new Quest(questDto.Name, trader, questDto.IsActive);
         foreach (var requiredItemCreateDto in questDto.RequiredItem)
         {
-            quest.AddRequiredItem(await CreateRequiredItem(requiredItemCreateDto));
+            quest.AddRequiredItem(await requiredItemService.Create(requiredItemCreateDto));
         }
 
         await questRepository.Create(quest);
@@ -43,26 +46,61 @@ public class QuestService(IQuestRepository questRepository, IItemRepository item
 
     public async Task<bool> Delete(int id)
     {
-        throw new NotImplementedException();
+        var quest = await questRepository.GetById(id);
+        if (quest == null)
+        {
+            throw new ServiceException(ErrorCodes.QuestNotFound,
+                $"Quest with id: '{id}' was not found.");
+        }
+
+        foreach (var requiredItem in quest.RequiredItems)
+        {
+            await requiredItemService.Delete(requiredItem);
+        }
+
+        await questRepository.Delete(quest);
+
+        return await questRepository.Save();
     }
 
     public async Task<bool> Update(QuestDto questDto)
     {
-        throw new NotImplementedException();
-    }
-
-    private async Task<RequiredItem> CreateRequiredItem(RequiredItemCreateDto reqItemDto)
-    {
-        var reqItem = RequiredItem.Create(reqItemDto.IsFoundInRaid, reqItemDto.Count);
-        var item = await itemRepository.GetById(reqItemDto.ItemId);
-        if (item == null)
+        var quest = await questRepository.GetById(questDto.Id);
+        if (quest == null)
         {
-            throw new ServiceException(ErrorCodes.ItemNotFound,
-                $"Item with id: '{reqItemDto.ItemId}' was not found.");
+            throw new ServiceException(ErrorCodes.QuestNotFound,
+                $"Quest with id: '{questDto.Id}' was not found.");
         }
 
-        reqItem.SetItem(item);
+        quest.SetName(questDto.Name);
+        var trader = EnumExtension.Parse<Trader>(questDto.Trader, ErrorCodes.TraderNotFound);
+        quest.SetTrader(trader);
 
-        return reqItem;
+        var requiredItemsToDelete =
+            quest.RequiredItems.Where(r => questDto.RequiredItems.Select(i => i.Id).Contains(r.Id));
+        foreach (var requiredItem in requiredItemsToDelete)
+        {
+            await requiredItemService.Delete(requiredItem);
+        }
+
+        foreach (var requiredItemDto in questDto.RequiredItems)
+        {
+            if (requiredItemDto.Id == null)
+            {
+                quest.AddRequiredItem(await requiredItemService.Create(requiredItemDto));
+            }
+
+            var reqItem = quest.RequiredItems.SingleOrDefault(r => r.Id == requiredItemDto.Id);
+            if (reqItem == null)
+            {
+                throw new ServiceException(ErrorCodes.RequiredItemNotFound,
+                    $"Required item with id: '{requiredItemDto.Id}' was not found.");
+            }
+
+            reqItem.SetCount(requiredItemDto.Count);
+            reqItem.SetIsFoundInRaid(requiredItemDto.IsFoundInRaid);
+        }
+
+        return await questRepository.Save();
     }
 }
